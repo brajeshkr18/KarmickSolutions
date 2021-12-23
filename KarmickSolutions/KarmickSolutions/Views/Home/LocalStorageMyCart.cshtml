@@ -1,0 +1,149 @@
+﻿@model List<DemoModel.ViewModel.CartViewModel>
+@using ResturantBooking.Utility.Helper;
+@using System.Collections;
+@using Newtonsoft.Json;
+@{
+
+    ViewBag.Title = "MyCart";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    
+}
+<script src="~/Assets/ApplicationJs/MyCart.js"></script>
+<div class="menu-form">
+    <div class="container">
+        <div class="w3ls-title">
+            <h3 class="agileits-title">My Cart</h3>
+        </div>
+        <div class="menu-info">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="four" aria-labelledby="four-tab">
+                        <div class="tab-info">
+                            @foreach (DemoModel.ViewModel.CartViewModel entity in Model)
+                            {
+                                string dropdown1 = entity.ProductId.ToString() + entity.CartId.ToString() + "flavour";
+                                <div class="menu-grids menu-grids-mdl">
+                                    <div class="menu-left" style="width: 35%;">
+                                        <h4>@entity.Tbl_Product.ProductName</h4>
+                                        <p>@entity.Tbl_Product.Description</p>
+                                    </div>
+                                    <div class="menu-right" style="width: 10%;">
+                                        <h5>@entity.Tbl_Product.Price</h5>
+                                    </div>
+                                    <div class="menu-right" style="width: 20%;">
+                                        <img src="@entity.Tbl_Product.ProductImage" style="width: 50%;" />
+                                    </div>
+
+                                    <div class="menu-left" style="width: 10%;">
+                                        <div class="form-group">
+                                            <label for="selector1" class="col-sm-2 control-label">Spices</label>
+                                            <div class="">
+                                                <select class="dd1 browser-default custom-select" id=@entity.ProductId@entity.CartId valu="@entity.CartId">
+                                                    <option value="0" selected="selected"> mild  </option>
+                                                    <option value="1"> medium  </option>
+                                                    <option value="2"> indian hot  </option>
+                                                    <option value="3"> kiwi hot  </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    @if (entity.Tbl_Product.ProductName.Contains("Chicken/Lamb/Beef"))
+                                    {
+                                        <div class="menu-left" style="width: 10%;">
+                                            <div class="form-group">
+                                                <label for="selector1" class="col-sm-2 control-label">Flavour</label>
+
+                                                <div class="">
+                                                    <select class="dd2 browser-default custom-select" id=@dropdown1>
+                                                        <option value="1" selected="selected"> chicken </option>
+                                                        <option value="2"> lamb </option>
+                                                        <option value="3"> beef </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="menu-right glyphicon glyphicon-remove" onclick="removeCart(@entity.Tbl_Product.ProductId)"
+                                         attr="@entity.Tbl_Product.ProductId" itemid="@entity.Tbl_Product.ProductId">
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (Model != null && Model.Count > 0)
+        {
+            <div class="more" style="text-align: center;">
+                @*<a href="/Home/Order" data-toggle="modal">Order Now</a>*@
+                <input type="button" id="btn_OrderNow" class="PlaceOrder" value="Order Now">
+            </div>
+        }
+        else
+        {
+
+            <div class="more" style="text-align: center;">
+                <div style="padding-bottom: 14px;">
+                    <p>You dont have any item  in your  cart kindly Explore our Menu</p>
+                </div>
+
+                <a href="/Home/Item" data-toggle="modal">Explore Menu</a>
+            </div>
+        }
+
+    </div>
+</div>
+<script src="~/Assets/ApplicationJs/MyCart.js"></script>
+<script>
+    var data = [{ "photo_link": "http://img1.jurko.net/avatar_16844.gif" },
+    { "photo_link": "http://img1.jurko.net/avatar_16844.gif" },
+    { "photo_link": "http://img1.jurko.net/avatar_16844.gif" }];
+
+    @*for (var i = 0; i < data.length; i++) {
+        var item = data[i];
+        var link = item.photo_link;
+        console.log(link);
+        $('.wp_pres_slug').append('<li><a href="#" onClick="openInAppBrowserBlank(' + link + ');"><img src=' + link + ' alt="*"/></a></li>');
+        var productname =@entity.Tbl_Product.ProductName;
+        var productdesc =@entity.Tbl_Product.ProductName;
+        var productPrice =@entity.Tbl_Product.ProductName;
+        var divstring = "<div class='menu-grids menu-grids-mdl'>< div class='menu-left' style = 'width: 35%;' ><h4>Chicken tikka</h4><p> Boneless chicken pieces marinated in spices and yogurt skewered and cooked in tan - door.</p ></div > <div class='menu-right' style='width: 10%;'> <h5>15.00</h5></div><div class='menu-right' style='width: 20%;'><img src='../Assets/Images/UploadImage/c41f55db-cced-4898-a49b-ffac1006e171.jpg' style='width: 50%;'></div><div class='menu-left' style='width: 10%;'><div class='form-group'><label for='selector1' class='col-sm-2 control-label'>Spices</label><div class=''><select class='dd1 browser-default custom-select' id='16129' valu='129'><option value='0' selected='selected'> mild</option><option value='1' > medium </ option >< option value='2'> indian hot</option><option value='3' > kiwi hot</option> </select></div></div></div><div class='menu-right glyphicon glyphicon-remove' onclick='removeCart(16)' attr='16' itemid='16'></div><div class='clearfix'> </div></div>"
+
+        $('.tab-info').append(divstring);
+    }*@
+    dataArray = []
+    var value = localStorage.getItem("cart");
+    var itemlist = JSON.parse(JSON.stringify(value));
+    dataArray = JSON.parse(itemlist);
+    //for (var i = 0; i < localStorage.length; i++) {
+
+    //    // set iteration key name
+    //    var key = localStorage.key(i);
+       
+    //    // use key name to retrieve the corresponding value
+    //    var value = localStorage.getItem("cart");
+    //    var itemlist = JSON.parse(JSON.stringify(value));
+    //    //dataArray.push(JSON.parse(itemlist));
+    //    dataArray = JSON.parse(itemlist);
+    //    //var iteArray[] = JSON.parse(itemlist);
+    //    // console.log the iteration key and value
+    //    //console.log('Key: ' + key + ', Value: ' + value);
+
+    //}
+    for (var i = 0; i < dataArray.length; i++) {
+
+        var _item = dataArray[i];
+        var name = _item.name;
+        var desc = _item.desc;
+        var price = _item.price;
+        var divstring = "<div class='menu-grids menu-grids-mdl'><div class='menu-left' style='width: 35%;'><h4>" + name + "</h4><p> " + desc + "</p ></div > <div class='menu-right' style='width: 10%;'> <h5>" + price + "</h5></div><div class='menu-right' style='width: 20%;'><img src="+_item.image+" style='width: 50%;'></div><div class='menu-left' style='width: 10%;'><div class='form-group'><label for='selector1' class='col-sm-2 control-label'>Spices</label><div class=''><select class='dd1 browser-default custom-select' id='16129' valu='129'><option value='0' selected='selected'> mild</option><option value='1' > medium </ option >< option value='2'> indian hot</option><option value='3' > kiwi hot</option> </select></div></div></div><div class='menu-right glyphicon glyphicon-remove' onclick='removeCart(16)' attr='16' itemid='16'></div><div class='clearfix'> </div></div>"
+
+        $('.tab-info').append(divstring);
+
+    }
+</script>
