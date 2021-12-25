@@ -41,7 +41,9 @@
                 <a class="btn btn-outline-info btn-xs linkbutton"
                    href="@Url.Action("AddUser", "User"
                     ,new {data=entity.Id})" name="edit"><i class="fa fa-edit"></i>Edit</a>&nbsp;
-
+                <a class="btn btn-outline-info btn-xs linkbutton"
+                   href="@Url.Action("DeletUser", "User"
+                    ,new {data=entity.Id})" name="edit"><i class="fa fa-trash"></i>Delete</a>&nbsp;
             </td>
         </tr>
         }

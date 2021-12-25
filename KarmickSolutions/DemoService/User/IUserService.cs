@@ -89,7 +89,7 @@ namespace DemoService.UserService
          bool verifyUserExistByCode(string ResetCode);
 
          bool UpdateResetCode(string EmailID, string ResetCode);
- 
 
+        bool DeletUser(int Id, int UserId);
     }
 }

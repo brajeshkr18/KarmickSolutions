@@ -281,7 +281,8 @@ namespace DemoService.UserService
             if ((int)Utility.Enums.UserType.SuperAdmin == RoleId)
                  user = _Context.Users.Include(item => item.UserDetails).Include(item => item.UserType).ToList();
             else
-                user = _Context.Users.Include(item => item.UserDetails).Include(item => item.UserType).
+                user = _Context.Users.Where(x => x.IsDeleted == false)
+                    .Include(item => item.UserDetails).Include(item => item.UserType).
                     Where(x => x.Id == UserId && x.UserTypeId==RoleId ).ToList();
             if (user != null)
             {
@@ -298,22 +299,14 @@ namespace DemoService.UserService
                 
 
                 Mapper.Map(userViewModel, users);
-                users.IsActive = true;
                 users.CreatedOn = DateTime.Now;
-                users.DefaultPassword = true;
-                users.AccountStatus = 1;//(int)Utility.Enums.AccountStatus.Active;
+                //users.DefaultPassword = true;
+                users.AccountStatus = (int)Utility.Enums.AccountStatus.Active;
                 users.IsDeleted = false;
                 users.CreatedBy = logId;
-                users.UserTypeId = (int)Utility.Enums.UserType.User;
-                users.LastLoginDate = DateTime.Now;
                 _Context.Users.Add(users);
                 _Context.SaveChanges();
- 
-                Mapper.Map(users, userViewModel);
-                userViewModel.UserType = new UserTypeViewModel();
-                userViewModel.UserType.Name = Utility.Enums.UserType.User.ToString();
-                userViewModel.UserType.Code = Utility.Enums.UserType.User.ToString();
-                userViewModel.UserType.Id = (int)Utility.Enums.UserType.User;
+
             }
             catch (Exception ex)
             {
@@ -356,6 +349,21 @@ namespace DemoService.UserService
             }
             else
                 return true;
+        }
+        public bool DeletUser(int Id, int UserId)
+        {
+            var user = _Context.Users.Where(item => item.Id == Id).FirstOrDefault();
+            if (user != null)
+            {
+                user.IsDeleted = true;
+                user.ModifiedBy = UserId;
+                user.ModifiedOn = DateTime.Now;
+                _Context.Configuration.ValidateOnSaveEnabled = false;
+                _Context.SaveChanges();
+                return true;
+            }
+            else
+                return false;
         }
         #endregion
     }

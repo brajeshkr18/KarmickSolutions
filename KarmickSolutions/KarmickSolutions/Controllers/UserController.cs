@@ -24,7 +24,8 @@ namespace KarmickSolutions.Controllers
             int pageDataSize = (pageSize ?? 10);
             int pageNumber = (page ?? 1);
             ViewBag.PageSize = pageDataSize;
-            var user = userService.GetUserList(Convert.ToInt32(UserAuthenticate.LogId), Convert.ToInt32(UserAuthenticate.UserTypeId)).ToPagedList(pageNumber, pageDataSize);
+            var user = userService.GetUserList(Convert.ToInt32(UserAuthenticate.LogId),
+                Convert.ToInt32(UserAuthenticate.UserTypeId)).ToPagedList(pageNumber, pageDataSize);
             return Request.IsAjaxRequest() ? (ActionResult)PartialView("_Users", user) : View(user);
 
         }
@@ -76,6 +77,19 @@ namespace KarmickSolutions.Controllers
                 //}
             }
             return View("AddUser", ObjUser);
+        }
+        public ActionResult DeletUser(int data)
+        {
+            bool result;
+            if (data != 0)
+            {
+                result = userService.DeletUser((int)data, Convert.ToInt32(UserAuthenticate.LogId));
+                return Json(new { IsSuccess = true, Message = "User Record deleted successfully" });
+            }
+            else
+            {
+                return Json(new { IsSuccess = false, Message = "something went wrong. please try again" });
+            }
         }
     }
 }
