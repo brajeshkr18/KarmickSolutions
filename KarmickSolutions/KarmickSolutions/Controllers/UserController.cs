@@ -50,16 +50,16 @@ namespace KarmickSolutions.Controllers
         {
             if (ModelState.IsValid)
             {
-                ObjUser.PasswordHash = SecurityHelper.CreatePasswordHash(ObjUser.Password,"");
                 if (!userService.IsUserExists(ObjUser.Email, ObjUser.Id.ToString()))
                 {
                     return Json($"Email {""} is already in use.");
                 }
                 bool result;
                 if (ObjUser.Id == 0)
-                    result = userService.SaveUsers(ObjUser);
+                { ObjUser.PasswordHash = SecurityHelper.CreatePasswordHash(ObjUser.Password, "");
+                result = userService.SaveUsers(ObjUser); }
                 else
-                    result = userService.UpdateUsers(ObjUser);
+                result = userService.UpdateUsers(ObjUser);
                 if (result)
                 {
                     return RedirectToAction("ManageUsers", new { });
@@ -68,13 +68,6 @@ namespace KarmickSolutions.Controllers
             else
             {
                 string error = "";
-                //foreach (ModelState modelState in ViewData.ModelState.Values)
-                //{
-                //    foreach (ModelError errors in modelState.Errors)
-                //    {
-                //        ModelState.AddModelError("Name", "Name Required");
-                //    }
-                //}
             }
             return View("AddUser", ObjUser);
         }
