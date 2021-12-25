@@ -291,28 +291,28 @@ namespace DemoService.UserService
             return useViewModel;
         }
 
-        public UserViewModel RegisterUsers(UserViewModel userViewModel, long logId = 0)
+        public bool RegisterUsers(UserViewModel userViewModel, long logId = 0)
         {
+            bool result = false; 
             User1 users = new User1();
             try
             {
-                
-
                 Mapper.Map(userViewModel, users);
                 users.CreatedOn = DateTime.Now;
                 //users.DefaultPassword = true;
                 users.AccountStatus = (int)Utility.Enums.AccountStatus.Active;
                 users.IsDeleted = false;
+                users.IsActive = true;
                 users.CreatedBy = logId;
                 _Context.Users.Add(users);
                 _Context.SaveChanges();
-
+                result = true;
             }
             catch (Exception ex)
             {
 
             }
-            return userViewModel;
+            return result;
         }
 
         public bool SaveUserPassword(ResetPasswordViewModel model)

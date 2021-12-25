@@ -185,7 +185,7 @@
         var designationId = $("#DesignationId").val();
         var password = $("#txtPassword").val();
         var confirmpassword = $("#ConfirmPassword").val();
-        // var role = alert($('input[name=gender]:checked').val(
+         var role = $('input[name=UserTypeId]:checked').val();
         if (firstName == "") {
             $('#lblFirstName').html(ErrorMessage.FirstName);
             hasError = true;
@@ -254,7 +254,7 @@
                 DepartrmentId: departrmentId,
                 DesignationId: designationId,
                 Password: password,
-                UserTypeId: 102,
+                UserTypeId: parseInt(role),
                 ConfirmPassword: confirmpassword
             }, function (data) {
 

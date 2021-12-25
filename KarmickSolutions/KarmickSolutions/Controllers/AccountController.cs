@@ -68,11 +68,11 @@ namespace KarmickSolutions.Controllers
                                      authenticatedUser.UserType.Code, rememberme,authenticatedUser.UserTypeId);
                         if (authenticatedUser.UserType.Name == UserType.Admin.ToString())
                         {
-                            RedirectToAction("Dashboard", "Admin");
+                            return RedirectToAction("Dashboard", "Admin");
                         }
                         else if (authenticatedUser.UserType.Name == UserType.User.ToString())
                         {
-                            RedirectToAction("Index", "Account");
+                            return RedirectToAction("Index", "Account");
                         }
                         return RedirectToAction("Dashboard", "Admin");
 
@@ -134,19 +134,19 @@ namespace KarmickSolutions.Controllers
                 try
                 {
                     model.PasswordHash = SecurityHelper.CreatePasswordHash(model.Password, "");
-                    var user = _userService.RegisterUsers(model);
-                    if (user != null)
+                    bool user = _userService.RegisterUsers(model);
+                    if (user)
                     {
                         return Json(new { IsSuccess = true, Message = "Data saved successfully" });
                     }
                     else
                     {
-                        //ModelState.Add(model.er)
+                        return Json(new { IsSuccess = false, Message = "Unable to save data" });
                     }
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "Invalid login attempt");
+                    ModelState.AddModelError("", ex.Message);
                 }
 
             }

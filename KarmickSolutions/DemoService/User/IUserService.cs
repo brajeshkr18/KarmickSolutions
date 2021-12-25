@@ -81,7 +81,7 @@ namespace DemoService.UserService
         /// <returns></returns>
          List<UserViewModel> GetUserList(int UserId, int RoleId);
 
-        UserViewModel RegisterUsers(UserViewModel userViewModel, long logId = 0);
+        bool RegisterUsers(UserViewModel userViewModel, long logId = 0);
 
 
         bool SaveUserPassword(ResetPasswordViewModel model);
