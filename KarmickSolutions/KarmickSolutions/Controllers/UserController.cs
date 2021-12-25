@@ -1,4 +1,5 @@
 ﻿using DemoModel.ViewModel;
+using DemoService.HomeService;
 using DemoService.UserService;
 using KarmickSolutions.Utility.Helper;
 using KarmickSolutions.Web.Helper;
@@ -14,8 +15,9 @@ namespace KarmickSolutions.Controllers
     public class UserController : Controller
     {
         IUserService userService = new UserService();
+        IHomeService homeService = new HomeService();
         // GET: User
-      
+
         public ActionResult ManageUsers(int? pageSize, int? page)
         {
 
@@ -34,6 +36,7 @@ namespace KarmickSolutions.Controllers
             if (data != 0)
             {
                 objUser = userService.GetUsersDetailsById((int)data);
+                ViewBag.GetDesignation = homeService.GetDesignation(objUser.DepartrmentId) ;
                 return View(objUser);
             }
             else

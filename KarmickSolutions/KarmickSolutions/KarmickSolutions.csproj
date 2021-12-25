@@ -939,13 +939,8 @@
     <Content Include="AdminAsset\html\ltr\tables.html" />
     <Content Include="AdminAsset\html\ltr\widgets.html" />
     <Content Include="Assets\about.html" />
-    <Content Include="Assets\ApplicationJs\AddItem.js" />
-    <Content Include="Assets\ApplicationJs\addToCart.js" />
-    <Content Include="Assets\ApplicationJs\ContactUs.js" />
+    <Content Include="Assets\ApplicationJs\Account.Js" />
     <Content Include="Assets\ApplicationJs\Home.js" />
-    <Content Include="Assets\ApplicationJs\MyAddress.js" />
-    <Content Include="Assets\ApplicationJs\MyCart.js" />
-    <Content Include="Assets\ApplicationJs\Order.js" />
     <Content Include="Assets\codes.html" />
     <Content Include="Assets\contact.html" />
     <Content Include="Assets\css\bootstrap.css" />

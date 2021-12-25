@@ -72,7 +72,7 @@ namespace KarmickSolutions.Controllers
                         }
                         else if (authenticatedUser.UserType.Name == UserType.User.ToString())
                         {
-                            RedirectToAction("Index", "Home");
+                            RedirectToAction("Index", "Account");
                         }
                         return RedirectToAction("Dashboard", "Admin");
 
@@ -127,7 +127,7 @@ namespace KarmickSolutions.Controllers
             if (_userService.IsUserExists(model.Email, model.Id.ToString()))
             {
                 ModelState.AddModelError("Email", "Email is already taken by someone.");
-                return Json(new { IsSuccess = false, ErrorMessage = "Email is already taken by someone" });
+                return Json(new { IsSuccess = false, Message = "Email is already taken by someone" });
             }
             if (ModelState.IsValid)
             {
@@ -137,7 +137,7 @@ namespace KarmickSolutions.Controllers
                     var user = _userService.RegisterUsers(model);
                     if (user != null)
                     {
-                        return Json(new { IsSuccess = true, ErrorMessage = "Data saved successfully" });
+                        return Json(new { IsSuccess = true, Message = "Data saved successfully" });
                     }
                     else
                     {
@@ -152,7 +152,7 @@ namespace KarmickSolutions.Controllers
             }
             else
             {
-                return Json(new { IsSuccess = false, ErrorMessage = "" });
+                return Json(new { IsSuccess = false, Message = "" });
             }
             return View(model);
         }

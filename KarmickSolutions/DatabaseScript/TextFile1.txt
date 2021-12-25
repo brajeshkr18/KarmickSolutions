@@ -1,0 +1,214 @@
+﻿Create database [KarmickSolutions]
+USE [KarmickSolutions]
+GO
+/****** Object:  Table [dbo].[Desigation]    Script Date: 25-12-2021 17:12:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Desigation](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Designation] [varchar](50) NOT NULL,
+	[DepartmentId] [int] NOT NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+	[CreatedBy] [bigint] NOT NULL,
+	[ModifiedBy] [bigint] NULL,
+	[ModifiedOn] [datetime] NULL,
+ CONSTRAINT [PK_Desigation] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[UserDetails]    Script Date: 25-12-2021 17:12:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[UserDetails](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[DateOfBirth] [datetime] NULL,
+	[Gender] [int] NULL,
+	[CurCountry] [int] NULL,
+	[CurState] [int] NULL,
+	[CurCity] [int] NULL,
+	[CurZipCode] [varchar](50) NULL,
+	[CurAddress1] [varchar](700) NULL,
+	[CurAddress2] [varchar](700) NULL,
+	[ProfileUrl] [varchar](max) NULL,
+	[UserId] [bigint] NOT NULL,
+	[IsDefault] [bit] NOT NULL,
+ CONSTRAINT [PK_UserDetails] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 25-12-2021 17:12:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Users](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[UserTypeId] [bigint] NOT NULL,
+	[FirstName] [nvarchar](50) NULL,
+	[LastName] [nvarchar](50) NULL,
+	[Email] [nvarchar](50) NULL,
+	[PhoneNumber] [varchar](50) NULL,
+	[UserName] [nvarchar](100) NULL,
+	[SaltKey] [nvarchar](50) NULL,
+	[PasswordHash] [nvarchar](250) NULL,
+	[DefaultPassword] [bit] NULL,
+	[LastLoginDate] [datetime] NULL,
+	[IsOnLine] [bit] NULL,
+	[AccountStatus] [int] NULL,
+	[CreatedBy] [bigint] NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[ModifiedBy] [bigint] NULL,
+	[ModifiedOn] [datetime] NULL,
+	[IsActive] [bit] NOT NULL,
+	[IsDeleted] [bit] NOT NULL,
+	[DepartrmentId] [int] NOT NULL,
+	[DesignationId] [int] NOT NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[UserTypes]    Script Date: 25-12-2021 17:12:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[UserTypes](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Name] [varchar](50) NOT NULL,
+	[Code] [varchar](10) NOT NULL,
+	[CreatedOn] [datetime] NOT NULL,
+	[IsActive] [bit] NOT NULL,
+ CONSTRAINT [PK_UserTypes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+SET IDENTITY_INSERT [dbo].[Desigation] ON 
+
+GO
+INSERT [dbo].[Desigation] ([Id], [Designation], [DepartmentId], [CreatedOn], [IsActive], [CreatedBy], [ModifiedBy], [ModifiedOn]) VALUES (1, N'Writer', 1, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 1, NULL, NULL)
+GO
+INSERT [dbo].[Desigation] ([Id], [Designation], [DepartmentId], [CreatedOn], [IsActive], [CreatedBy], [ModifiedBy], [ModifiedOn]) VALUES (2, N'Editor', 1, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 1, NULL, NULL)
+GO
+INSERT [dbo].[Desigation] ([Id], [Designation], [DepartmentId], [CreatedOn], [IsActive], [CreatedBy], [ModifiedBy], [ModifiedOn]) VALUES (3, N'Reviewer', 1, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 1, NULL, NULL)
+GO
+INSERT [dbo].[Desigation] ([Id], [Designation], [DepartmentId], [CreatedOn], [IsActive], [CreatedBy], [ModifiedBy], [ModifiedOn]) VALUES (4, N'Illustrator', 2, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 1, NULL, NULL)
+GO
+INSERT [dbo].[Desigation] ([Id], [Designation], [DepartmentId], [CreatedOn], [IsActive], [CreatedBy], [ModifiedBy], [ModifiedOn]) VALUES (5, N'3D Designer', 2, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 1, NULL, NULL)
+GO
+INSERT [dbo].[Desigation] ([Id], [Designation], [DepartmentId], [CreatedOn], [IsActive], [CreatedBy], [ModifiedBy], [ModifiedOn]) VALUES (6, N'2D Designer', 2, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 1, NULL, NULL)
+GO
+INSERT [dbo].[Desigation] ([Id], [Designation], [DepartmentId], [CreatedOn], [IsActive], [CreatedBy], [ModifiedBy], [ModifiedOn]) VALUES (7, N'Business Dev', 3, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 1, NULL, NULL)
+GO
+INSERT [dbo].[Desigation] ([Id], [Designation], [DepartmentId], [CreatedOn], [IsActive], [CreatedBy], [ModifiedBy], [ModifiedOn]) VALUES (8, N'Editor', 3, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 1, NULL, NULL)
+GO
+INSERT [dbo].[Desigation] ([Id], [Designation], [DepartmentId], [CreatedOn], [IsActive], [CreatedBy], [ModifiedBy], [ModifiedOn]) VALUES (9, N'Blog writer', 3, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 1, NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[Desigation] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Users] ON 
+
+GO
+INSERT [dbo].[Users] ([Id], [UserTypeId], [FirstName], [LastName], [Email], [PhoneNumber], [UserName], [SaltKey], [PasswordHash], [DefaultPassword], [LastLoginDate], [IsOnLine], [AccountStatus], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn], [IsActive], [IsDeleted], [DepartrmentId], [DesignationId]) VALUES (1, 1, N'brajesh', N'kumar1', N'brajeshkr18@gmail.com', N'89898989890', N'brajesh', NULL, N'4ebe2761d0cceed5bd5b4333f288d7bf', 1, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 1, 1, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 0, 1, 1)
+GO
+INSERT [dbo].[Users] ([Id], [UserTypeId], [FirstName], [LastName], [Email], [PhoneNumber], [UserName], [SaltKey], [PasswordHash], [DefaultPassword], [LastLoginDate], [IsOnLine], [AccountStatus], [CreatedBy], [CreatedOn], [ModifiedBy], [ModifiedOn], [IsActive], [IsDeleted], [DepartrmentId], [DesignationId]) VALUES (2, 1, N'brajesh', N'kumar1', N'brajesh@gmail.com', N'89898989890', N'brajesh', NULL, N'4ebe2761d0cceed5bd5b4333f288d7bf', 1, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 1, 1, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, CAST(N'2021-12-25 00:20:34.940' AS DateTime), 1, 0, 1, 1)
+GO
+SET IDENTITY_INSERT [dbo].[Users] OFF
+GO
+SET IDENTITY_INSERT [dbo].[UserTypes] ON 
+
+GO
+INSERT [dbo].[UserTypes] ([Id], [Name], [Code], [CreatedOn], [IsActive]) VALUES (1, N'SuperAdmin', N'SuperAdmin', CAST(N'2018-01-31 23:40:11.807' AS DateTime), 1)
+GO
+INSERT [dbo].[UserTypes] ([Id], [Name], [Code], [CreatedOn], [IsActive]) VALUES (2, N'Admin', N'Admin', CAST(N'2018-01-31 23:40:11.883' AS DateTime), 1)
+GO
+INSERT [dbo].[UserTypes] ([Id], [Name], [Code], [CreatedOn], [IsActive]) VALUES (3, N'User', N'User', CAST(N'2018-01-31 23:40:11.883' AS DateTime), 1)
+GO
+SET IDENTITY_INSERT [dbo].[UserTypes] OFF
+GO
+ALTER TABLE [dbo].[UserDetails] ADD  CONSTRAINT [DF__UserDetai__IsDef__73BA3083]  DEFAULT ((0)) FOR [IsDefault]
+GO
+ALTER TABLE [dbo].[UserDetails]  WITH CHECK ADD  CONSTRAINT [FK__UserId__User__Id] FOREIGN KEY([UserId])
+REFERENCES [dbo].[Users] ([Id])
+GO
+ALTER TABLE [dbo].[UserDetails] CHECK CONSTRAINT [FK__UserId__User__Id]
+GO
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD  CONSTRAINT [FK__UserTypeId__UserType__Id] FOREIGN KEY([UserTypeId])
+REFERENCES [dbo].[UserTypes] ([Id])
+GO
+ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK__UserTypeId__UserType__Id]
+GO
+/****** Object:  StoredProcedure [dbo].[SaveUserDetails]    Script Date: 25-12-2021 17:12:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE procedure [dbo].[SaveUserDetails]  
+(  
+   @Id INTEGER,  
+  @CurCountry int,
+  @CurState  int,
+  @CurCity  int,
+  @CurZipCode VARCHAR(max),
+  @CurAddress1  VARCHAR(max),
+  @CurAddress2  VARCHAR(max),
+  @ProfileUrl  VARCHAR(max),
+  @UserId  bigint,
+  @IsDefault  bit
+)  
+AS  
+BEGIN  
+IF (@Id !=0) 
+BEGIN  
+UPDATE UserDetails SET  
+CurCountry = @CurCountry, CurState = @CurState
+WHERE id = @Id  
+END  
+Else  
+
+BEGIN  
+insert into UserDetails(CurCountry,CurState,CurCity,CurZipCode,CurAddress1,CurAddress2,ProfileUrl,UserId,IsDefault)
+ values(@CurCountry,@CurState,@CurCity,@CurZipCode,@CurAddress1,@CurAddress2,@ProfileUrl,@UserId,@IsDefault)  
+END  
+end  
+
+
+
+
+
+GO

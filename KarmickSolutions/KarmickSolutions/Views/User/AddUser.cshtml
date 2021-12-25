@@ -46,80 +46,80 @@
                     {
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.Password)
+                        @Html.HiddenFor(model => model.ConfirmPassword)
                         @*<input type="hidden" id="ddvalue" value="@Model.TypeId"/>*@
-                    <div class="card-body">
-                        <h4 class="card-title">User Info</h4>
-                        <div class="form-group row">
-                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Title</label>
-                            <div class="col-sm-9">
-                                @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @placeholder = "FirstName" })
-                                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                        <div class="card-body">
+                            <h4 class="card-title">User Info</h4>
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">FirstName</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @placeholder = "FirstName" })
+                                    @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Title</label>
-                            <div class="col-sm-9">
-                                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", @placeholder = "LastName" })
-                                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">LastName</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", @placeholder = "LastName" })
+                                    @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Title</label>
-                            <div class="col-sm-9">
-                                @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Email" })
-                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Email" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Title</label>
-                            <div class="col-sm-9">
-                                @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @placeholder = "Mobile" })
-                                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Mobile</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @placeholder = "Mobile" })
+                                    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">DepartMent</label>
-                            <div class="col-sm-9">
-                                @Html.DropDownList("DepartMent",
-EnumHelper.GetSelectList(typeof(Utility.Enums.Designation)),
-"Select DepartMent",
-new { @class = "form-control", @id = "DepartrmentId", onchange = "" })
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">DepartMent</label>
+                                <div class="col-sm-9">
 
-                                @Html.ValidationMessageFor(m => m.DepartrmentId, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Designation</label>
-                            <div class="col-sm-9">
-                                @Html.DropDownListFor(model => model.DesignationId,
-                          new SelectList(new List<SelectListItem>
-                           {
-                               new SelectListItem { Text = "DepartMent" , Value = "0"},
-                           },
-                             "Value", // property to be set as Value of dropdown item
-                             "Text",  // property to be used as text of dropdown item
-                             "True"), // value that should be set selected of dropdown
-                                 new { @class = "form-control", @id = "DesignationId" })
-                                @Html.ValidationMessageFor(m => m.DesignationId, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        @*<div class="form-group row">
-            <label for="fname" class="col-sm-3 text-right control-label col-form-label">Title</label>
-            <div class="col-sm-9">
-                @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Image Title" })
-                @Html.ValidationMessageFor(m => m.GalleryName, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                                    @Html.DropDownListFor(x=>x.DepartrmentId,
+    EnumHelper.GetSelectList(typeof(Utility.Enums.Designation)),
+    "Select DepartMent",
+    new { @class = "form-control", @id = "DepartrmentId", onchange = "" })
 
-
+                                    @Html.ValidationMessageFor(m => m.DepartrmentId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Designation</label>
+                                <div class="col-sm-9">
+                                    @if (Model.Id != 0)
+                                    {
+                                        @Html.DropDownListFor(x => x.DesignationId, new SelectList(@ViewBag.GetDesignation, "Id", "Designation"),
+                                       "-- Select Designation--", new { @class = "form-control" })
+                                        @*@Html.DropDownList("Organization", ViewBag.GetDesignation as SelectList)*@
+                                    }
+                                    @Html.ValidationMessageFor(m => m.DesignationId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @*<div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Title</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Image Title" })
+                        @Html.ValidationMessageFor(m => m.GalleryName, "", new { @class = "text-danger" })
                     </div>
+                </div>*@
+
+
+                        </div>
                         <div class="border-top">
                             <div class="card-body">
                                 <button type="submit" class="btn btn-success">Save</button>
-                                <a href="@Url.Action("ManageGallery", "Admin" )" class="btn btn-danger" name="Cancel">Cancel</a>
+                                <a href="@Url.Action("ManageUsers", "User" )" class="btn btn-danger" name="Cancel">Cancel</a>
                                 @*<button type="submit" class="btn btn-primary">Reset</button>
-                                    <button type="submit" class="btn btn-info">Edit</button>
-                                    <button type="submit" class="btn btn-danger">Cancel</button>*@
+                    <button type="submit" class="btn btn-info">Edit</button>
+                    <button type="submit" class="btn btn-danger">Cancel</button>*@
                             </div>
                         </div>
                     }

@@ -5,358 +5,172 @@
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-    <div class="container">
-        <div class="w3ls-title">
-            <h3 class="agileits-title" style="font-size: 2em;">User Details</h3>
-        </div>
+<div class="container">
+    <div class="w3ls-title">
+        <h3 class="agileits-title" style="font-size: 2em;">User Details</h3>
+    </div>
 
-        <div class="grid_3 grid_4 col-sm-12">
-
-
-                <div class="tab-content">
-                    <div class="tab-pane active" id="horizontal-form">
-
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="grid_3 grid_4 col-sm-12">
 
 
-                        <div class="form-group">
-                            <div class="col-sm-8">
-                                <label for="smallinput" class="col-sm-4 control-label label-input-sm">First Name</label>
-                                @Html.TextBoxFor(m => m.FirstName, new
-                           {
-                               @class = "form-control1 input-sm",
-                               @placeholder = "First Name",
-                               required = "required",
-                               @onkeypress = "return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"
-                           })
-                            </div>
-                            <div class="col-sm-8">
-                                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger", @id = "lblFirstName" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-8">
-                                <label for="smallinput" class="col-sm-4 control-label label-input-sm">Last Name</label>
-                                @Html.TextBoxFor(m => m.LastName, new
-                                {
-                                    @class = "form-control1 input-sm",
-                               @placeholder = "Last Name",
-                                    required = "required"
-                                })
-                            </div>
-                            <div class="col-sm-8">
-                                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger", @id = "lblLastName" })
-                            </div>
-                        </div>
-                        <div class="form-group">
+        <div class="tab-content">
+            <div class="tab-pane active" id="horizontal-form">
 
-                            <div class="col-sm-8">
-                                <label for="smallinput" class="col-sm-4 control-label label-input-sm">Email</label>
-                                @Html.TextBoxFor(m => m.Email, new
-                                {
-                                    @class = "form-control1 input-sm",
-                               @placeholder = "Email",
-                                    required = "required",
-                               autocomplete = "off",
-                                    @id = "txtEmail"
-                           })
-                            </div>
-                            <div class="col-sm-8">
-                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger", @id = "lblEmail" })
-                            </div>
-                        </div>
-                        <div class="form-group">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                            <div class="col-sm-8">
-                                <label for="smallinput" class="col-sm-4 control-label label-input-sm">Mobile Number</label>
-                                @Html.TextBoxFor(m => m.PhoneNumber, new
-                                {
-                                    @class = "form-control1 input-sm",
-                               @placeholder = "Mobile Number",
-                                    required = "required",
-                               autocomplete = "off"
-                           })
-                            </div>
-                            <div class="col-sm-8">
-                                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger", @id = "lblPhone" })
-                            </div>
-                        </div>
-                        <div class="form-group">
 
-                            <div class="col-sm-8">
-                                <label for="smallinput" class="col-sm-4 control-label label-input-sm">DepartMent</label>
-                                @Html.DropDownList("DepartMent",
-                            EnumHelper.GetSelectList(typeof(Utility.Enums.Designation)),
-                            "Select DepartMent",
-                            new { @class = "form-control1", @id = "DepartrmentId", onchange = "" })
+                <div class="form-group">
+                    <div class="col-sm-8">
+                        <label for="smallinput" class="col-sm-4 control-label label-input-sm">First Name</label>
+                        @Html.TextBoxFor(m => m.FirstName, new
+                   {
+                       @class = "form-control1 input-sm",
+                       @placeholder = "First Name",
+                       required = "required",
+                       @onkeypress = "return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"
+                   })
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger", @id = "lblFirstName" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8">
+                        <label for="smallinput" class="col-sm-4 control-label label-input-sm">Last Name</label>
+                        @Html.TextBoxFor(m => m.LastName, new
+                        {
+                            @class = "form-control1 input-sm",
+                       @placeholder = "Last Name",
+                            required = "required"
+                        })
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger", @id = "lblLastName" })
+                    </div>
+                </div>
+                <div class="form-group">
 
-                            <div class="col-sm-8">
-                                @Html.ValidationMessageFor(m => m.DepartrmentId, "", new { @class = "text-danger", @id = "lblDepartment" })
-                            </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
+                    <div class="col-sm-8">
+                        <label for="smallinput" class="col-sm-4 control-label label-input-sm">Email</label>
+                        @Html.TextBoxFor(m => m.Email, new
+                        {
+                            @class = "form-control1 input-sm",
+                       @placeholder = "Email",
+                            required = "required",
+                       autocomplete = "off",
+                            @id = "txtEmail"
+                   })
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger", @id = "lblEmail" })
+                    </div>
+                </div>
+                <div class="form-group">
 
-                            <div class="col-sm-8">
-                                <label for="smallinput" class="col-sm-2 control-label label-input-sm">Designation</label>
-                                @Html.DropDownListFor(model => model.DesignationId,
-                          new SelectList(new List<SelectListItem>
-                           {
-                               new SelectListItem { Text = "Please select department first" , Value = "0"},
-                           }, "Value", "Text", "True"),
-                               new { @class = "form-control1 ", @id = "DesignationId" })
-                                <div class="col-sm-8">
-                                    @Html.ValidationMessageFor(m => m.DesignationId, "", new { @class = "text-danger", @id = "lblDesignation" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
+                    <div class="col-sm-8">
+                        <label for="smallinput" class="col-sm-4 control-label label-input-sm">Mobile Number</label>
+                        @Html.TextBoxFor(m => m.PhoneNumber, new
+                        {
+                            @class = "form-control1 input-sm",
+                       @placeholder = "Mobile Number",
+                            required = "required",
+                       autocomplete = "off"
+                   })
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger", @id = "lblPhone" })
+                    </div>
+                </div>
+                <div class="form-group">
 
-                            <div class="col-sm-8">
-                                <label for="smallinput" class="col-sm-4 control-label label-input-sm">Password</label>
-                                @Html.PasswordFor(m => m.Password, new
-                                {
-                                    @class = "form-control1 input-sm",
-                               @placeholder = "Password",
-                                    required = "required",
-                               autocomplete = "off",@id="txtPassword"
-                           })
-                            </div>
-                            <div class="col-sm-8">
-                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger", @id = "lblPassword" })
-                            </div>
-                        </div>
-                        <div class="form-group">
+                    <div class="col-sm-8">
+                        <label for="smallinput" class="col-sm-4 control-label label-input-sm">DepartMent</label>
+                        @Html.DropDownList("DepartMent",
+                    EnumHelper.GetSelectList(typeof(Utility.Enums.Designation)),
+                    "Select DepartMent",
+                    new { @class = "form-control1", @id = "DepartrmentId", onchange = "" })
 
-                            <div class="col-sm-8">
-                                <label for="smallinput" class="col-sm-4 control-label label-input-sm">Confirm Password</label>
-                                @Html.PasswordFor(m => m.ConfirmPassword, new
-                                {
-                                    @class = "form-control1 input-sm",
-                               @placeholder = "Confirm Password",
-                                    required = "required",
-                               autocomplete = "off"
-                           })
-                            </div>
-                            <div class="col-sm-8">
-                                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger", @id = "lblConfirmpassword" })
-                            </div>
-                        </div>
-                        <div>
-                            <div >
-                                <div class="col-sm-8">
-                                    <label for="smallinput" class="col-sm-4 control-label label-input-sm">UserType</label> 
-         
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="radio" id="Role1" name="UserTypeId" value="2">
-                                    <label for="age1">Admin</label>
-                                    <input type="radio" id="Role2" name="UserTypeId" value="3">
-                                    <label for="age2">User</label>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-sm-8">
-                                <div class="date_btn" style="margin: 4em 0 0;text-align: center;">
-                                    <button id="btn_register" class="reg-button" type="button">Register</button>
-                                </div>
-
-
-                                <div class="date_btn" style="text-align: center;">
-                                    Already have account ?<a href="@Url.Action("Login", "Account")" data-toggle="modal"> Login</a>
-                                </div>
-                            </div>
+                            @Html.ValidationMessageFor(m => m.DepartrmentId, "", new { @class = "text-danger", @id = "lblDepartment" })
                         </div>
                     </div>
-   
+                </div>
+                <div class="form-group">
 
+                    <div class="col-sm-8">
+                        <label for="smallinput" class="col-sm-2 control-label label-input-sm">Designation</label>
+                        @Html.DropDownListFor(model => model.DesignationId,
+                  new SelectList(new List<SelectListItem>
+                   {
+                       new SelectListItem { Text = "Please select department first" , Value = "0"},
+                   }, "Value", "Text", "True"),
+                       new { @class = "form-control1 ", @id = "DesignationId" })
+                        <div class="col-sm-8">
+                            @Html.ValidationMessageFor(m => m.DesignationId, "", new { @class = "text-danger", @id = "lblDesignation" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <div class="col-sm-8">
+                        <label for="smallinput" class="col-sm-4 control-label label-input-sm">Password</label>
+                        @Html.PasswordFor(m => m.Password, new
+                        {
+                            @class = "form-control1 input-sm",
+                       @placeholder = "Password",
+                            required = "required",
+                       autocomplete = "off",
+                            @id = "txtPassword"
+                   })
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger", @id = "lblPassword" })
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <div class="col-sm-8">
+                        <label for="smallinput" class="col-sm-4 control-label label-input-sm">Confirm Password</label>
+                        @Html.PasswordFor(m => m.ConfirmPassword, new
+                        {
+                            @class = "form-control1 input-sm",
+                       @placeholder = "Confirm Password",
+                            required = "required",
+                       autocomplete = "off"
+                   })
+                    </div>
+                    <div class="col-sm-8">
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger", @id = "lblConfirmpassword" })
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div class="col-sm-8">
+                            <label for="smallinput" class="col-sm-4 control-label label-input-sm">UserType</label>
+
+                        </div>
+                        <div class="col-sm-8">
+                            <input type="radio" id="Role1" name="UserTypeId" value="2">
+                            <label for="age1">Admin</label>
+                            <input type="radio" id="Role2" name="UserTypeId" value="3" checked="checked">
+                            <label for="age2">User</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="date_btn" style="margin: 4em 0 0;text-align: center;">
+                        <button id="btn_register" class="reg-button" type="button">Register</button>
+                    </div>
+                    <div class="date_btn" style="text-align: center;">
+                        Already have account ?<a href="@Url.Action("Login", "Account")"> Login</a>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
     </div>
-    <script src="~/Assets/js/ErrorMessages.js"></script>
-    <script>
-
- $("#btn_register").click(function () {
-            var hasError = false;
-            clearValidation();
-             var firstName = $("#FirstName").val();
-             var lastName = $("#LastName").val();
-             var email = $("#txtEmail").val();
-             var phone = $("#PhoneNumber").val();
-             var departrmentId = $("#DepartrmentId").val();
-             var designationId = $("#DesignationId").val();
-             var password = $("#txtPassword").val();
-     var confirmpassword = $("#ConfirmPassword").val();
-    // var role = alert($('input[name=gender]:checked').val(
-             if (firstName == "") {
-                 $('#lblFirstName').html(ErrorMessage.FirstName);
-                 hasError = true;
-             }
-             if (lastName == "") {
-                 $('#lblLastName').html(ErrorMessage.LastName)
-                hasError = true;
-             }
-            if (email == "") {
-                $('#lblEmail').html(ErrorMessage.Email)
-                hasError = true;
-            }
-            else if (!ValidateEmail(email)) {
-                $('#lblEmail').html(ErrorMessage.EmailValidation)
-                hasError = true;
-            }
-            if (phone == "") {
-                $('#lblPhone').html(ErrorMessage.Phone)
-                hasError = true;
-            }
-            else if (!validatePhone(phone)) {
-                $('#lblPhone').html(ErrorMessage.PhoneValidation)
-                hasError = true;
-            }
-            if (departrmentId == "0" || departrmentId == "") {
-                 $('#lblDepartment').html(ErrorMessage.Department)
-                 hasError = true;
-             }
-             if (designationId == "0") {
-                 $('#lblDesignation').html(ErrorMessage.Designation)
-                 hasError = true;
-             }
-            else if (password == "") {
-                 $('#lblPassword').html(ErrorMessage.Password)
-                hasError = true;
-            }
-            else if (confirmpassword == "") {
-                 $('#lblConfirmpassword').html(ErrorMessage.ConfirmPassword)
-                hasError = true;
-            }
-            else if (password != confirmpassword) {
-                 $('#lblConfirmpassword').html(ErrorMessage.ConfirmPasswordMatch)
-                hasError = true;
-            }
-
-            if (hasError == false) {
-                var ObjUser = {
-                    FirstName : firstName,
-                    LastName: lastName,
-                    Email: email,
-                    PhoneNumber: phone,
-                    DepartrmentId: departrmentId,
-                    DesignationId: designationId,
-                    Password: password,
-                    UserTypeId: 102,
-                }
-                var url = "/Account/Register";
-                $.post(url, {
-                    FirstName: firstName,
-                    LastName: lastName,
-                    Email: email,
-                    PhoneNumber: phone,
-                    DepartrmentId: departrmentId,
-                    DesignationId: designationId,
-                    Password: password,
-                    UserTypeId: 102,
-                    ConfirmPassword: confirmpassword
-                }, function (data) {
-
-                    if ((data.Status) == "Success") {
-                        //$('#dvErrorMessage').removeClass('display-hide').addClass('display')
-                        //$('#dvErrorMessage').removeClass('alert-danger').addClass('alert-success')
-                        //$('.spnErrorMessage').html('<strong>Successful:</strong> ' + data.Message)
-                        ////$('.spnSuccessMessage').html('<strong>Successful:</strong> ' + data.Message)
-                        //$(':input', '#form').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
-                        $('#submit').show();
-                    }
-                    else if ((data.Status) == "Failure") {
-                        $('#lblEmail').html(ErrorMessage.EmailALreadyTaken)
-                    }
-                });
-                //var url = "/Account/Register";
-                //$.ajax({
-                //    url: url,
-                //    type: 'POST',
-                //    data: JSON.stringify(ObjUser),
-                //    dataType: 'json',
-                //    contentType: 'application/json; charset=utf-8',
-                //    error: function (xhr) {
-                //        alert('Error: ' + xhr.statusText);
-                //    },
-                //    success: function (result) {
-                //        CheckIfInvoiceFound(result);
-                //    },
-                //    async: true,
-                //    processData: false
-                //});
-                //$.post(url, { model: ObjUser }, function (Result) {
-                //    if (Result.Status == "Success") {
-
-                //        $('.success').removeClass('display-hide').addClass('display')
-                //        $('.loader').removeClass('display').addClass('display-hide')
-                //        $('.spnsuccessMessage').html(Result.Message)
-                //        $(Button).removeClass('disabled')
-                //        setTimeout(alertFunc, 3000);
-                //        if (id == 0) {
-                //            ClearAllFields('#dvuserdetails');
-                //        }
-                //    } else if (Result.Status == "Failure") {
-
-                //        $('.Error').removeClass('display-hide').addClass('display')
-                //        $('.spnErrorMessage').html(Result.Message)
-                //        $('.loader').removeClass('display').addClass('display-hide')
-                //        $(Button).removeClass('disabled')
-                //        setTimeout(alertFunc, 3000);
-                //    } else {
-
-                //        $('.Error').removeClass('display-hide').addClass('display')
-                //        $('.spnErrorMessage').html('<strong>Error: </strong>Oops! Something went wrong while processing your request. Please try again')
-                //        $('.loader').removeClass('display').addClass('display-hide')
-                //        $(Button).removeClass('disabled')
-                //        setTimeout(alertFunc, 3000);
-                //    }
-
-
-                //});
-            }
- });
-        function response() {
-            alert();
-        }
-        function ValidateEmail(email)
-        {
-            var re = /^[a-zA-Z0-9._%+-]+(@@karmicksolutions\.com)$/;
-            return re.test(email);
-        }
-        function validatePhone(phone) {
-            var re = /^[789]\d{9}$/;
-            return re.test(phone);
-        }
-           var url = '@Url.Action("Designation", "Account")'; // use the helper (dont hard code)
-    var designation = $('#DesignationId'); // cache the element
-        $('#DepartrmentId').change(function () {
-            $.getJSON(url, { DepartmentId: $(this).val() }, function (response) {
-                // clear and add default (null) option
-                designation.empty().append($('<option></option>').val('0').text('Please select Designation'));
-                $.each(response, function (index, item) {
-                    designation.append($('<option></option>').val(item.DepartmentId).text(item.Designation));
-                });
-            });
-        });
-        function validatePassword(pwd1, pwd2) {
-            var pwdregx = "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$";
-            if (pwd1 != "" && pwd1 == pwd2) {
-                return pwdregx.test(pwd1);
-            } else {
-                alert("Password field should contain at least one alphabet, one digit and one special character");
-                form.pwd1.focus();
-                return false;
-            }
-        }
-        function clearValidation() {
-            $('#lblFirstName').html("");
-            $('#lblLastName').html("");
-            $('#lblEmail').html("");
-            $('#lblPhone').html("");
-            $('#lblDepartment').html("");
-            $('#lblDesignation').html("");
-            $('#lblPassword').html("");
-            $('#lblConfirmpassword').html("");
-        }
-    </script>
+</div>
+<script src="~/Assets/js/ErrorMessages.js"></script>
+<script src="~/Assets/ApplicationJs/Account.Js"></script>

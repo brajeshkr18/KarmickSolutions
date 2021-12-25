@@ -206,18 +206,10 @@ namespace DemoService.UserService
                 try
                 {
                     Mapper.Map(user, useViewModel);
-                    useViewModel.UserDetail = new UserDetailViewModel();
-                    if (user.UserDetails.Count == 1)
-                    {
-                        useViewModel.UserDetail.CurAddress1 = user.UserDetails.FirstOrDefault().CurAddress1;
-                        useViewModel.UserDetail.CurAddress2 = user.UserDetails.FirstOrDefault().CurAddress2;
-                        useViewModel.UserDetail.CurCity = user.UserDetails.FirstOrDefault().CurCity;
-                        useViewModel.UserDetail.CurZipCode = user.UserDetails.FirstOrDefault().CurZipCode;
-                        useViewModel.UserDetail.ProfileUrl = user.UserDetails.FirstOrDefault().ProfileUrl;
-                        useViewModel.UserDetail.Id = user.UserDetails.FirstOrDefault().Id;
-                        useViewModel.UserDetail.UserId = user.UserDetails.FirstOrDefault().UserId;
-                    }
-                    Mapper.Map(user.UserDetails, useViewModel.UserDetail);
+                    useViewModel.Password = user.PasswordHash;
+                    useViewModel.ConfirmPassword = user.PasswordHash;
+                    useViewModel.DepartrmentId = user.DepartrmentId;
+                    useViewModel.DesignationId = user.DesignationId;
                 }
                 catch (Exception ex)
                 {
