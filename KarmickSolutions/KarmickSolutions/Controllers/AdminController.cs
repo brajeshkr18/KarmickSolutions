@@ -1,4 +1,4 @@
-﻿using ResturantBooking.Web.Helper;
+﻿using KarmickSolutions.Web.Helper;
 using DemoModel.ViewModel;
 using PagedList;
 using System;
@@ -10,7 +10,7 @@ using System.Configuration;
 using static Utility.Enums;
 using Utility;
 
-namespace ResturantBooking.Controllers
+namespace KarmickSolutions.Controllers
 {
     [CustomAuthorize]
     [RoleAuthorize(AppConstant.RoleAdmin,AppConstant.RoleSuperAdmin)]

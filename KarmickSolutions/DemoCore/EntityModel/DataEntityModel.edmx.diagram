@@ -5,11 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2a0df8c24c4c494a98fa856ad872f0aa" Name="Diagram1">
-        <EntityTypeShape EntityType="indianlotusModel.UserDetail" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="indianlotusModel.UserDetail" Width="1.5" PointX="5.25" PointY="2" />
         <EntityTypeShape EntityType="indianlotusModel.User" Width="1.5" PointX="3" PointY="1.125" />
         <EntityTypeShape EntityType="indianlotusModel.UserType" Width="1.5" PointX="0.75" PointY="2.75" />
-        <AssociationConnector Association="indianlotusModel.FK__UserTypeId__UserType__Id" />
         <AssociationConnector Association="indianlotusModel.FK__UserId__User__Id" />
+        <AssociationConnector Association="indianlotusModel.FK__UserTypeId__UserType__Id" />
+        <EntityTypeShape EntityType="indianlotusModel.Desigation" Width="1.5" PointX="5.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

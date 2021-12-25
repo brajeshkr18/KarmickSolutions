@@ -1,23 +1,19 @@
-﻿using CarisBrook.Service.UserService;
-using Newtonsoft.Json;
+﻿using DemoModel.ViewModel;
+using DemoService.UserService;
+using KarmickSolutions.Utility.Helper;
+using KarmickSolutions.Web.Helper;
 using PagedList;
-using ResturantBooking.Utility.Helper;
-using ResturantBooking.Web.Helper;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Utility;
 
-namespace ResturantBooking.Controllers
+namespace KarmickSolutions.Controllers
 {
     [CustomAuthorize]
     [RoleAuthorize(AppConstant.RoleAdmin, AppConstant.RoleSuperAdmin)]
     public class UserController : Controller
     {
-        UserService userService = new UserService();
+        IUserService userService = new UserService();
         // GET: User
       
         public ActionResult ManageUsers(int? pageSize, int? page)
@@ -30,34 +26,53 @@ namespace ResturantBooking.Controllers
             return Request.IsAjaxRequest() ? (ActionResult)PartialView("_Users", user) : View(user);
 
         }
-        //[HttpGet]
-        //public ActionResult AddGallery(int data)
-        //{
-        //    ViewBag.AlbumData = menuService.GetAllAlbum().Where(x => x.IsActive == true);
-        //    GalleryViewModel objGallery = new GalleryViewModel();
-        //    if (data != 0)
-        //    {
-        //        objGallery = menuService.GetGalleryById((int)data);
-        //        return View(objGallery);
-        //    }
-        //    else
-        //    {
-        //        return View();
-        //    }
-        //}
-        //[HttpPost]
-        //public ActionResult AddGallery(GalleryViewModel ObjGallery)
-        //{
-        //    bool result;
-        //    if (ObjGallery.id == 0)
-        //        result = menuService.SaveGallery(ObjGallery);
-        //    else
-        //        result = menuService.UpdateGallery(ObjGallery);
-        //    if (result)
-        //    {
-        //        return RedirectToAction("ManageGallery", new { });
-        //    }
-        //    return View();
-        //}
+        [HttpGet]
+        public ActionResult AddUser(int data)
+        {
+
+            UserViewModel objUser = new UserViewModel();
+            if (data != 0)
+            {
+                objUser = userService.GetUsersDetailsById((int)data);
+                return View(objUser);
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [HttpPost]
+        public ActionResult AddUser(UserViewModel ObjUser)
+        {
+            if (ModelState.IsValid)
+            {
+                ObjUser.PasswordHash = SecurityHelper.CreatePasswordHash(ObjUser.Password,"");
+                if (!userService.IsUserExists(ObjUser.Email, ObjUser.Id.ToString()))
+                {
+                    return Json($"Email {""} is already in use.");
+                }
+                bool result;
+                if (ObjUser.Id == 0)
+                    result = userService.SaveUsers(ObjUser);
+                else
+                    result = userService.UpdateUsers(ObjUser);
+                if (result)
+                {
+                    return RedirectToAction("ManageUsers", new { });
+                }
+            }
+            else
+            {
+                string error = "";
+                //foreach (ModelState modelState in ViewData.ModelState.Values)
+                //{
+                //    foreach (ModelError errors in modelState.Errors)
+                //    {
+                //        ModelState.AddModelError("Name", "Name Required");
+                //    }
+                //}
+            }
+            return View("AddUser", ObjUser);
+        }
     }
 }

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using DemoService.UserService;
+using KarmickSolutions.Utility.Helper;
 using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Web;
-using CarisBrook.Service.UserService;
-using ResturantBooking.Utility.Helper;
 
-namespace ResturantBooking.Web.Helper
+namespace KarmickSolutions.Web.Helper
 {
     public class UserAuthenticate
     {
@@ -32,7 +32,7 @@ namespace ResturantBooking.Web.Helper
                     var jsonData = SecurityHelper.Decrypt(HttpContext.Current.Request.Cookies["ES"]["US"].ToString());
                     Hashtable decryptedData = JsonConvert.DeserializeObject<Hashtable>(jsonData);
                     //var User = GetUserDetailsFromCookie();
-                    UserService _IUserService = new UserService();
+                    IUserService _IUserService = new UserService();
 
                     var user = _IUserService.GetUsersDetailsById(Convert.ToInt64(decryptedData["LogId"]));
                     //if (user.AccountStatus != (int)Utility.Enums.AccountStatus.Active)

@@ -6,24 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarisBrook.Service.IUserService
+namespace DemoService.UserService
 {
     public interface IUserService
     {
-        /// <summary>
-        /// User authentication on login
-        /// </summary>
-        /// <param name="loginViewModel"></param>
-        /// <returns></returns>
         UserViewModel LoginAuthentication(LoginViewModel loginViewModel);
-
 
         /// <summary>
         /// Update user status on logout
         /// </summary>
         /// <param name="userId"></param>
         void UserLogOff(string userId);
-
 
         /// <summary>
         /// Save Users
@@ -33,14 +26,22 @@ namespace CarisBrook.Service.IUserService
         /// <param name="validateOnSaveEnabled"></param>
         /// <param name="mailBodyTemplate"></param>
         /// <returns></returns>
-        bool SaveUsers(UserViewModel userViewModel, long logId = 0, bool validateOnSaveEnabled = true, string mailBodyTemplate = "");
+        bool SaveUsers(UserViewModel userViewModel, long logId = 0);
+
 
         /// <summary>
         /// Update User information
         /// </summary>
-        /// <param name="user"></param>        
+        /// <param name="user"></param>
+        /// <param name="ProfileMedia"></param>
         /// <returns></returns>
         bool UpdateUsers(UserViewModel userViewModel);
+
+        /// <summary>
+        /// Get all Users
+        /// </summary>
+        /// <param name="searchingParams"></param>
+        /// <returns></returns>
 
         /// <summary>
         /// Get user detail by Id
@@ -49,16 +50,46 @@ namespace CarisBrook.Service.IUserService
         /// <returns></returns>
         UserViewModel GetUsersDetailsById(long UserId);
 
+
         /// <summary>
         /// Get user detail by email
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
         UserViewModel GetUsersDetailsByEmail(string email);
-        bool IsUserExists(string emailAddress, string id);
-        List<UserTypeViewModel> GetUserTypes();
-        List<UserViewModel> GetUserList(int UserId, int RoleId);
 
-       
+
+        /// <summary>
+        /// Check for User email exists
+        /// </summary>
+        /// <param name="emailAddress"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+         bool IsUserExists(string emailAddress, string id);
+
+
+
+        /// <summary>
+        /// Get all user Types
+        /// </summary>
+        /// <returns></returns>
+         List<UserTypeViewModel> GetUserTypes();
+
+        /// <summary>
+        /// Get all user 
+        /// </summary>
+        /// <returns></returns>
+         List<UserViewModel> GetUserList(int UserId, int RoleId);
+
+        UserViewModel RegisterUsers(UserViewModel userViewModel, long logId = 0);
+
+
+        bool SaveUserPassword(ResetPasswordViewModel model);
+
+         bool verifyUserExistByCode(string ResetCode);
+
+         bool UpdateResetCode(string EmailID, string ResetCode);
+ 
+
     }
 }

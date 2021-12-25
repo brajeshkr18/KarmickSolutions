@@ -10,48 +10,19 @@ using System.Threading.Tasks;
 using Utility;
 using static Utility.Enums;
 
-namespace DemoService.User
+namespace DemoService.HomeService
 {
-    public class HomeService
+    public class HomeService:IHomeService
     {
         private OnBoadTaskEntities _Context = new OnBoadTaskEntities();
-        #region Public_Methods
-        
-        public List<UserDetailViewModel> GetMyAddress(long UserId)
-        {
-            List<UserDetailViewModel> userDetailViewModel = new List<UserDetailViewModel>();
-            try
-            {
-                List<UserDetail> userDetail = new List<UserDetail>();
-                userDetail = _Context.UserDetails.OrderBy(x => x.IsDefault).Where(x => x.UserId == UserId).ToList();
-                Mapper.Map(userDetail, userDetailViewModel);
-            }
-            catch (Exception ex)
-            {
 
-            }
-            return userDetailViewModel;
-        }
-       
-        public bool SaveMyAddress(long UserId, UserDetailViewModel userDetailViewModel)
+        public List<DesignationViewModel> GetDesignation(int DepartmentId)
         {
-            bool status = false;
-            try
-            {
-                    _Context.SaveUserDetails(userDetailViewModel.Id, userDetailViewModel.CurCountry,
-                        1, userDetailViewModel.CurCity, userDetailViewModel.CurZipCode,
-                        userDetailViewModel.CurAddress1, userDetailViewModel.CurAddress2, userDetailViewModel.ProfileUrl, UserId,
-                        userDetailViewModel.IsDefault);
- 
-                status = true;
-            }
-            catch (Exception ex)
-            {
-
-            }
-            return status;
+            List<DesignationViewModel> designationModel = new List<DesignationViewModel>();
+            var designations = _Context.Desigations.Where(x=>x.DepartmentId==DepartmentId).ToList();
+            Mapper.Map(designations, designationModel);
+            return designationModel;
         }
-   
-        #endregion
+
     }
 }

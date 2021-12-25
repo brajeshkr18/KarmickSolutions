@@ -7,10 +7,10 @@ using System.Linq;
 using System.Data.Entity;
 using Demo.Core.EntityModel;
 using DemoModel.ViewModel;
-
-namespace CarisBrook.Service.UserService
+using User1 = Demo.Core.EntityModel.User;
+namespace DemoService.UserService
 {
-    public class UserService 
+    public class UserService : IUserService
     {
        
         private OnBoadTaskEntities _Context = new OnBoadTaskEntities();
@@ -114,7 +114,7 @@ namespace CarisBrook.Service.UserService
         {
             bool status = false;
 
-            User users = new User();
+            User1 users = new User1();
 
             Mapper.Map(userViewModel, users);
 
@@ -158,36 +158,11 @@ namespace CarisBrook.Service.UserService
                     _usrsaltdetails.LastName = userViewModel.LastName;
                     _usrsaltdetails.Email = userViewModel.Email;
                     _usrsaltdetails.PhoneNumber = userViewModel.PhoneNumber;
-                    _usrsaltdetails.WorkPhone = userViewModel.WorkPhone;
                     _usrsaltdetails.UserName = userViewModel.UserName;
-                    _usrsaltdetails.ReportingTo = userViewModel.ReportingTo;
-                    _usrsaltdetails.AssignedRegionId = userViewModel.AssignedRegionId;
                     _usrsaltdetails.ModifiedBy = userViewModel.ModifiedBy;
                     _usrsaltdetails.ModifiedOn = DateTime.Now;
 
-                    //if (_usrsaltdetails.UserDetails == null)
-                    //{
-                    //    _usrsaltdetails.UserDetails = new UserDetails();
-                    //}
-
-
-                    //if (_usrsaltdetails.UserDetails != null)
-                    //{
-                    //    _usrsaltdetails.UserDetails.CurAddress1 = userViewModel.UserDetails.CurAddress1;
-                    //    _usrsaltdetails.UserDetails.CostPerMile = userViewModel.UserDetails.CostPerMile;
-                    //    _usrsaltdetails.UserDetails.CostPerMinute = userViewModel.UserDetails.CostPerMinute;
-                    //}
-                    //Mapper.Map(userViewModel.UserDetails, _usrsaltdetails.UserDetails);
-
-                    //if (_vehicledetails != null)
-                    //{
-                    //    _vehicledetails.RegistrationNo = userViewModel.RegistrationNo;
-                    //    //_vehicledetails.ModelName = userViewModel.ModelName;
-                    //    _vehicledetails.InsuranceNo = userViewModel.InsuranceNo;
-                    //    _vehicledetails.Address1 = userViewModel.Address1;
-                    //    _vehicledetails.PhoneNumber = userViewModel.PhoneNumber;
-                    //    _vehicledetails.Inspectation = userViewModel.Inspectation;
-                    //}
+                    Mapper.Map(userViewModel.UserDetail, _usrsaltdetails.UserDetails);
 
                     _Context.Configuration.ValidateOnSaveEnabled = false;
                     _Context.SaveChanges();
@@ -310,7 +285,7 @@ namespace CarisBrook.Service.UserService
         public List<UserViewModel> GetUserList(int UserId,int RoleId)
         {
             List<UserViewModel> useViewModel = new List<UserViewModel>();
-            List<User> user = new List<User>();
+            List<User1> user = new List<User1>();
             if ((int)Utility.Enums.UserType.SuperAdmin == RoleId)
                  user = _Context.Users.Include(item => item.UserDetails).Include(item => item.UserType).ToList();
             else
@@ -325,7 +300,7 @@ namespace CarisBrook.Service.UserService
 
         public UserViewModel RegisterUsers(UserViewModel userViewModel, long logId = 0)
         {
-            User users = new User();
+            User1 users = new User1();
             try
             {
                 

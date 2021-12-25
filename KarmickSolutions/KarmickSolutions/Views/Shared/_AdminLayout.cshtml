@@ -1,4 +1,4 @@
-﻿@using ResturantBooking.Web.Helper;
+﻿@using KarmickSolutions.Web.Helper;
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../AdminAsset/assets/images/favicon.png">
-    <title>Admin Pannel -Resturant</title>
+    <title>Admin Pannel </title>
     <!-- Custom CSS -->
     <link href="../../AdminAsset/assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -139,28 +139,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Dashboard", "Admin")" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-
-                        @if (UserAuthenticate.IsAuthenticated && UserAuthenticate.UserType == Utility.Enums.UserType.SuperAdmin.ToString())
-                        {
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("ManageWebsiteContent", "Admin")" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Manage Website Content</span></a></li>
-                            <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("ManageAlbum", "Admin")" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Manage Album</span></a></li>
-                        }
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("ManageGallery", "Admin")" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Manage Gallery</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("ManageUsers", "User")" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Manage Users</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("ManageBookings", "BookingRequest")" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Manage  BookingRequest</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("ManageContactRequests", "BookingRequest")" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Manage Contact/Query</span></a></li>
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Manage Item </span></a>
-                            <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item"><a href="@Url.Action("ManageProducts", "Item")" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Product </span></a></li>
-                                <li class="sidebar-item"><a href="@Url.Action("ManageItems", "Item")" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Product(Only Image) </span></a></li>
-                                <li class="sidebar-item"><a href="@Url.Action("ManageOrders", "Order")" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Order </span></a></li>
-                            </ul>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("ManagePayment", "Admin")" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">ManagePayment</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("UserManual", "Admin")" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">UserManual</span></a></li>
-
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

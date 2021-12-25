@@ -35,7 +35,7 @@ body a:hover,body a:focus{
 } 
 /*-- banner --*/
 .banner {
-    background: url(../../Assets/images/Gallery/bg1.jpg)no-repeat center center;
+    /*background: url(../../Assets/images/Gallery/bg1.jpg)no-repeat center center;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -880,7 +880,7 @@ p.about-w3text {
 /*-- //about-modal --*/ 
 /*-- about-page --*/ 
 .banner-text.w3labout-bnr {
-    padding: 4em 0;
+    padding: 2em 0;
 }
 .banner-text.w3labout-bnr h2 {
     font-size: 2em;
@@ -895,10 +895,10 @@ p.about-w3text {
 	color:#f44336;
 }
 .banner-text.w3labout-bnr h2 a{
-    color: #fff;
+    color: red !important;
 } 
 .banner-text.w3labout-bnr h2 a:hover {
-    color: #f44336;
+    color: red !important;
 } 
 /*-- //about-page --*/ 
 /*-- features --*/ 

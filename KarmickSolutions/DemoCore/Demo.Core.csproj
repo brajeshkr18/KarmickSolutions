@@ -71,6 +71,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataEntityModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EntityModel\Desigation.cs">
+      <DependentUpon>DataEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel\GetGalleryItem_Result.cs">
       <DependentUpon>DataEntityModel.tt</DependentUpon>
     </Compile>

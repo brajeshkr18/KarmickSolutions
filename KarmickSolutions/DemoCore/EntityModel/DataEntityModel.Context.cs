@@ -30,6 +30,7 @@ namespace Demo.Core.EntityModel
         public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
+        public virtual DbSet<Desigation> Desigations { get; set; }
     
         public virtual ObjectResult<GetGalleryItem_Result> GetGalleryItem(Nullable<long> id)
         {

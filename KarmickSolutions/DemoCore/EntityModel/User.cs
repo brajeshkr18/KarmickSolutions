@@ -26,7 +26,6 @@ namespace Demo.Core.EntityModel
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public string WorkPhone { get; set; }
         public string UserName { get; set; }
         public string SaltKey { get; set; }
         public string PasswordHash { get; set; }
@@ -34,17 +33,17 @@ namespace Demo.Core.EntityModel
         public Nullable<System.DateTime> LastLoginDate { get; set; }
         public Nullable<bool> IsOnLine { get; set; }
         public Nullable<int> AccountStatus { get; set; }
-        public Nullable<long> ReportingTo { get; set; }
         public Nullable<long> CreatedBy { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<long> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-        public Nullable<long> AssignedRegionId { get; set; }
+        public int DepartrmentId { get; set; }
+        public int DesignationId { get; set; }
     
-        public virtual UserType UserType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserDetail> UserDetails { get; set; }
+        public virtual UserType UserType { get; set; }
     }
 }

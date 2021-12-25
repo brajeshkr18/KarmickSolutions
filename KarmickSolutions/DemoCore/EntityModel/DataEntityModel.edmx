@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="indianlotusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Desigation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Designation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
         <EntityType Name="UserDetails">
           <Key>
             <PropertyRef Name="Id" />
@@ -32,7 +45,6 @@
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
-          <Property Name="WorkPhone" Type="varchar" MaxLength="50" />
           <Property Name="UserName" Type="nvarchar" MaxLength="100" />
           <Property Name="SaltKey" Type="nvarchar" MaxLength="50" />
           <Property Name="PasswordHash" Type="nvarchar" MaxLength="250" />
@@ -40,14 +52,14 @@
           <Property Name="LastLoginDate" Type="datetime" />
           <Property Name="IsOnLine" Type="bit" />
           <Property Name="AccountStatus" Type="int" />
-          <Property Name="ReportingTo" Type="bigint" />
           <Property Name="CreatedBy" Type="bigint" />
           <Property Name="CreatedOn" Type="datetime" Nullable="false" />
           <Property Name="ModifiedBy" Type="bigint" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
-          <Property Name="AssignedRegionId" Type="bigint" />
+          <Property Name="DepartrmentId" Type="int" Nullable="false" />
+          <Property Name="DesignationId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserTypes">
           <Key>
@@ -96,6 +108,7 @@
           <Parameter Name="IsDefault" Type="bit" Mode="In" />
         </Function>
         <EntityContainer Name="indianlotusModelStoreContainer">
+          <EntitySet Name="Desigation" EntityType="Self.Desigation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTypes" EntityType="Self.UserTypes" Schema="dbo" store:Type="Tables" />
@@ -150,14 +163,15 @@
           <EntitySet Name="UserDetails" EntityType="indianlotusModel.UserDetail" />
           <EntitySet Name="Users" EntityType="indianlotusModel.User" />
           <EntitySet Name="UserTypes" EntityType="indianlotusModel.UserType" />
-          <AssociationSet Name="FK__UserTypeId__UserType__Id" Association="indianlotusModel.FK__UserTypeId__UserType__Id">
-            <End Role="UserType" EntitySet="UserTypes" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
           <AssociationSet Name="FK__UserId__User__Id" Association="indianlotusModel.FK__UserId__User__Id">
             <End Role="User" EntitySet="Users" />
             <End Role="UserDetail" EntitySet="UserDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK__UserTypeId__UserType__Id" Association="indianlotusModel.FK__UserTypeId__UserType__Id">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="Desigations" EntityType="indianlotusModel.Desigation" />
         </EntityContainer>
         <ComplexType Name="GetGalleryItem_Result">
           <Property Type="Int64" Name="id" Nullable="false" />
@@ -245,7 +259,6 @@
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="WorkPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SaltKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PasswordHash" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -253,16 +266,16 @@
           <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
           <Property Name="IsOnLine" Type="Boolean" />
           <Property Name="AccountStatus" Type="Int32" />
-          <Property Name="ReportingTo" Type="Int64" />
           <Property Name="CreatedBy" Type="Int64" />
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedBy" Type="Int64" />
           <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
-          <Property Name="AssignedRegionId" Type="Int64" />
-          <NavigationProperty Name="UserType" Relationship="indianlotusModel.FK__UserTypeId__UserType__Id" FromRole="User" ToRole="UserType" />
+          <Property Name="DepartrmentId" Type="Int32" Nullable="false" />
+          <Property Name="DesignationId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UserDetails" Relationship="indianlotusModel.FK__UserId__User__Id" FromRole="User" ToRole="UserDetail" />
+          <NavigationProperty Name="UserType" Relationship="indianlotusModel.FK__UserTypeId__UserType__Id" FromRole="User" ToRole="UserType" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
@@ -275,18 +288,6 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="indianlotusModel.FK__UserTypeId__UserType__Id" FromRole="UserType" ToRole="User" />
         </EntityType>
-        <Association Name="FK__UserTypeId__UserType__Id">
-          <End Type="indianlotusModel.UserType" Role="UserType" Multiplicity="1" />
-          <End Type="indianlotusModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="UserTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__UserId__User__Id">
           <End Type="indianlotusModel.User" Role="User" Multiplicity="1" />
           <End Type="indianlotusModel.UserDetail" Role="UserDetail" Multiplicity="*" />
@@ -299,6 +300,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__UserTypeId__UserType__Id">
+          <End Type="indianlotusModel.UserType" Role="UserType" Multiplicity="1" />
+          <End Type="indianlotusModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Desigation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Designation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -327,14 +353,14 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="indianlotusModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="AssignedRegionId" ColumnName="AssignedRegionId" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+                <ScalarProperty Name="DepartrmentId" ColumnName="DepartrmentId" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ReportingTo" ColumnName="ReportingTo" />
                 <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
                 <ScalarProperty Name="IsOnLine" ColumnName="IsOnLine" />
                 <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
@@ -342,7 +368,6 @@
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="SaltKey" ColumnName="SaltKey" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -359,6 +384,20 @@
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Desigations">
+            <EntityTypeMapping TypeName="indianlotusModel.Desigation">
+              <MappingFragment StoreEntitySet="Desigation">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

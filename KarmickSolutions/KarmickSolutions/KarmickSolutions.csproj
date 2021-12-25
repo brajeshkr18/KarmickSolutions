@@ -155,8 +155,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\UserAuthenticateAttribute.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1059,6 +1057,7 @@
     <Content Include="Assets\js\bars.js" />
     <Content Include="Assets\js\bootstrap.js" />
     <Content Include="Assets\js\easing.js" />
+    <Content Include="Assets\js\ErrorMessages.js" />
     <Content Include="Assets\js\jarallax.js" />
     <Content Include="Assets\js\jquery-2.2.3.min.js" />
     <Content Include="Assets\js\jquery-ui.js" />
@@ -1641,7 +1640,6 @@
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\AddWebsiteContent.cshtml" />
-    <Content Include="Views\Admin\ManageWebsiteContent.cshtml" />
     <Content Include="Views\Admin\_WebsiteContent.cshtml" />
     <Content Include="Themes\ckeditor\CHANGES.md" />
     <Content Include="Themes\ckeditor\LICENSE.md" />
@@ -1674,41 +1672,24 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\User\ManageUsers.cshtml" />
     <Content Include="Views\User\_Users.cshtml" />
-    <Content Include="Views\BookingRequest\ManageBookings.cshtml" />
-    <Content Include="Views\BookingRequest\_Bookings.cshtml" />
     <Content Include="Views\Home\Menu.cshtml" />
-    <Content Include="Views\BookingRequest\ManageContactRequests.cshtml" />
-    <Content Include="Views\BookingRequest\_ContactRequests.cshtml" />
     <Content Include="Views\Home\Item.cshtml" />
-    <Content Include="Views\Item\ManageProducts.cshtml" />
-    <Content Include="Views\Item\_Items.cshtml" />
     <Content Include="Views\Home\MyCart.cshtml" />
     <Content Include="Views\Home\Order.cshtml" />
     <Content Include="Views\Home\MyAddresses.cshtml" />
     <Content Include="Views\Home\MyOrder.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Item\AddProduct.cshtml" />
     <Content Include="Views\Account\Unauthorized.cshtml" />
-    <Content Include="Views\Order\ManageOrders.cshtml" />
-    <Content Include="Views\Order\_Orders.cshtml" />
-    <Content Include="Views\Item\ManageItems.cshtml" />
-    <Content Include="Views\Order\_ViewOrders.cshtml" />
-    <Content Include="Views\Paypal\FailureView.cshtml" />
-    <Content Include="Views\Paypal\Index.cshtml" />
-    <Content Include="Views\Paypal\PaymentWithCreditCard.cshtml" />
-    <Content Include="Views\Paypal\PaymentWithPaypal.cshtml" />
-    <Content Include="Views\Paypal\SuccessView.cshtml" />
     <Content Include="Views\Admin\_Payment.cshtml" />
-    <Content Include="Views\Admin\ManagePayment.cshtml" />
-    <Content Include="Views\Admin\UserManual.cshtml" />
     <Content Include="Views\Home\ItemDetail.cshtml" />
     <Content Include="Views\Home\_ItemPartial.cshtml" />
     <Content Include="Views\Home\LocalStorageMyCart.cshtml" />
+    <Content Include="Views\User\AddUser.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\images\UploadImage\" />
-    <Folder Include="Views\Stripe\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DemoModel\DemoModel.csproj">
